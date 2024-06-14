@@ -1,5 +1,7 @@
 const express = require('express')
-const PORT = 7777
+const dotenv = require('dotenv').config()
+
+const PORT = process.env.port
 const app = express()
 const mongoose = require('mongoose')
 
@@ -8,7 +10,7 @@ app.use(express.json())
 //connect to mongose
 mongoose.connect("mongodb+srv://anthonyeji25:OvkixczEJy7gcch3@cluster0.mq7rtqe.mongodb.net/").then(()=>{
 
-console.log('connection to database established');
+console.log('connection to database is now  established');
 
 
 app.listen(PORT,()=>{
