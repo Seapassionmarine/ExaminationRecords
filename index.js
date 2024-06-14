@@ -161,25 +161,22 @@ app.put('/updateinfo',async(req,res)=>{
             sex
          }
          console.log(userInfo);
+          if(!mongoose.Types.objected.isvalid(req.params.id)){
+            return res.status(400).json(`user with id:${req.params.id}not found`)
+          }
+
          if(userInfo.sex !== 'male' && userInfo.sex !== 'female'){
             return res.status(400).json('sex can either be male or female')
          }
          let updateuserInfo = await scoreModel.findByIdAndUpdate(req.params.id.userInfo,{new:true})
+         res.status(200).json({
+            message:`${updateuserInfo.firstName} information updated`
+         })
          
     } catch (err) {
       res.status(500).json(err.message)
     }
 })
-        
-            
-
-
-
-
-
-
-
-
 
 app.get('/:status',async(req,res)=>{
     try {
